@@ -1,0 +1,240 @@
+# Welcome to S4
+
+A ⚡blazingly fast⚡ and safe in-process s3 gateway for AWS and IBM Cloud Object Storage buckets.
+
+## Features
+
+* Compatible with anything that supports the AWS SDK -> aws cli/boto3, polars, spark, datafusion, Alteryx, Denodo, dbt, ...
+* Decouples frontend from backend authentication and authorization: plug in your authentication and authorization services. 
+* Flexible extensible Python configuration and interface: pass in callables for credentials fetching, validation, lookup secret for access_key (with cache).
+* Compatibility Gateway between systems that are limited to single hmac credentials pair, and distributed multi-vendor multi-credentials buckets backends.
+* Seemlessly translate requests between path and virtual addressing style.
+* Compatible with corporate firewalled and proxied networks.
+
+
+## Quick example
+
+With local configuration.
+
+~/.aws/config
+```ini
+[profile osp]
+region = eu-west-3
+output = json
+services = osp-services
+s3 =
+    addressing_style = path
+
+[services osp-services]
+s3 =
+  endpoint_url = http://localhost:6190
+```
+
+~/.aws/credentials
+```ini
+[osp]
+aws_access_key_id = MYLOCAL123  # <-- this could be an internal client identifier, to fetch openid connect/oauth2 token or anything that makes sense for your business
+aws_secret_access_key = nothingmeaningful # <-- private key to sign original request
+```
+
+Set up a minimal server implementation:
+```python
+import json
+import os
+import random
+import object_storage_proxy as osp
+
+from dotenv import load_dotenv
+
+from object_storage_proxy import start_server, ProxyServerConfig
+
+
+_TRUES  = {"y", "yes", "t", "true", "on", "1"}
+_FALSES = {"n", "no", "f", "false", "off", "0"}
+
+
+def strtobool(val: str) -> bool:
+    """Convert a string to True/False, raise ValueError otherwise."""
+    v = val.lower()
+    if v in _TRUES:
+        return True
+    if v in _FALSES:
+        return False
+    raise ValueError(f"invalid truth value {val!r}")
+
+
+def do_api_creds(token: str, bucket: str) -> str:
+    """Fetch credentials (ro, rw, access_denied) for the given bucket, depending on the token. """
+    apikey = os.getenv("COS_API_KEY")
+    if not apikey:
+        raise ValueError("COS_API_KEY environment variable not set")
+    
+    print(f"Fetching credentials for {bucket}...")
+    return apikey
+
+
+def do_hmac_creds(token: str, bucket: str) -> str:
+    """ Fetch HMAC credentials (ro, rw, access_denied) for the given bucket, depending on the token """
+    access_key = os.getenv("ACCESS_KEY")
+    secret_key = os.getenv("SECRET_KEY")
+    if not access_key or not secret_key:
+        raise ValueError("ACCESS_KEY or SECRET_KEY environment variable not set")
+        
+    print(f"Fetching HMAC credentials for {bucket}...")
+
+    return json.dumps({
+        "access_key": access_key,
+        "secret_key": secret_key
+    })
+
+def lookup_secret_key(access_key: str) -> str | None:
+    # get all environment variables ending in ACCESS_KEY
+    access_keys = [{key:value} for key, value in os.environ.items() if key.endswith("ACCESS_KEY") and value==access_key ]
+
+    if len(access_keys) > 0:
+        access_key_var = next((k for k, v in access_keys[0].items() if v == access_key), None)
+
+        secret_key_var = access_key_var.replace("ACCESS_KEY", "SECRET_KEY")
+        return os.getenv(secret_key_var, None)
+    else:
+        print(f"no access keys found for : {access_key}")
+
+
+def do_validation(token: str, bucket: str) -> bool:
+    """ Authorize the request based on token for the given bucket. 
+        You can plug in your own authorization service here.
+        The token is a client identifier used to fetch an authorization token and further authenticate/authorize.
+        The bucket is the bucket name.
+        The function should return True if the request is authorized, False otherwise.
+    """
+
+    print(f"PYTHON: Validating headers: {token} for {bucket}...")
+    # return random.choice([True, False])
+    return True
+
+
+def main() -> None:
+    load_dotenv()
+
+    counting = strtobool(os.getenv("OSP_ENABLE_REQUEST_COUNTING", "false"))
+
+    if counting:
+        osp.enable_request_counting()
+        print("Request counting enabled")
+
+    apikey = os.getenv("COS_API_KEY")
+    if not apikey:
+        raise ValueError("COS_API_KEY environment variable not set")
+
+    cos_map = {
+        "bucket1": {
+            "host": "s3.eu-de.cloud-object-storage.appdomain.cloud",
+            "region": "eu-de",
+            "port": 443,
+            "apikey": apikey,
+            "ttl": 0
+        },
+        "bucket2": {
+            "host": "s3.eu-de.cloud-object-storage.appdomain.cloud",
+            "region": "eu-de",
+            "port": 443,
+            "apikey": apikey
+        },
+        "proxy-bucket01": {
+            "host": "s3.eu-de.cloud-object-storage.appdomain.cloud",
+            "region": "eu-de",
+            # "access_key": os.getenv("ACCESS_KEY"),
+            # "secret_key": os.getenv("SECRET_KEY"),
+            "port": 443,
+            "ttl": 300
+        },
+        "proxy-bucket05": {
+            "host": "s3.eu-de.cloud-object-storage.appdomain.cloud",
+            "region": "eu-de",
+            "access_key": os.getenv("PROXY_BUCKET05_ACCESS_KEY"),
+            "secret_key": os.getenv("PROXY_BUCKET05_SECRET_KEY"),
+            "port": 443,
+            "ttl": 300
+        },
+        "proxy-aws-bucket01": {
+            "host": "s3.eu-west-3.amazonaws.com",
+            "region": "eu-west-3",
+            "access_key": os.getenv("AWS_ACCESS_KEY"),
+            "secret_key": os.getenv("AWS_SECRET_KEY"),
+            "port": 443,
+            "ttl": 300
+        }
+    }
+
+    hmac_keys= [
+        # {
+        #     "access_key": os.getenv("LOCAL_ACCESS_KEY"),
+        #     "secret_key": os.getenv("LOCAL_SECRET_KEY")
+        # },
+        {
+            "access_key": os.getenv("LOCAL2_ACCESS_KEY"),
+            "secret_key": os.getenv("LOCAL2_SECRET_KEY")
+        },
+
+    ]
+
+    ra = ProxyServerConfig(
+        cos_map=cos_map,
+        bucket_creds_fetcher=do_hmac_creds,
+        validator=do_validation,
+        http_port=6190,
+        # https_port=8443,
+        threads=1,
+        # verify=False,
+        hmac_keystore=hmac_keys,
+        skip_signature_validation=False,
+        hmac_fetcher=lookup_secret_key
+    )
+
+    start_server(ra)
+
+
+if __name__ == "__main__":
+    main()
+
+```
+
+Run with [aws-cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) (but could be anything compatible with the aws s3 api like polars, spark, presto, ...):
+
+```bash
+$ aws s3 ls s3://proxy-bucket01/ --recursive --summarize --human-readable --profile osp
+2025-04-17 17:45:30   33 Bytes README.md
+2025-04-17 17:48:04   33 Bytes README2.md
+
+Total Objects: 2
+   Total Size: 66 Bytes
+$
+```
+
+Server output:
+
+```log
+$ uv run python test_server.py
+2025-04-19T13:19:54.402023+02:00  INFO object_storage_proxy: Logger initialized; starting server on http port 6190 and https port 8443
+2025-04-19T13:19:54.402361+02:00  INFO object_storage_proxy: Bucket creds fetcher provided: Py(0x100210680)
+Fetching credentials for bucket01...
+2025-04-19T13:19:54.402485+02:00  INFO object_storage_proxy: Callback returned: Kn2t...
+[src/lib.rs:327:5] &run_args.cos_map = Py(
+    0x000000010061aa00,
+)
+2025-04-19T13:19:54.403738+02:00  INFO pingora_core::server: Bootstrap starting
+2025-04-19T13:19:54.403852+02:00  INFO pingora_core::server: Bootstrap done
+2025-04-19T13:19:54.424489+02:00  INFO pingora_core::server: Server starting
+PYTHON: Validating headers: MYLOCAL123 for proxy-bucket01...
+2025-04-19T13:19:58.124729+02:00  INFO object_storage_proxy::utils::validator: Callback returned: false
+PYTHON: Validating headers: MYLOCAL123 for proxy-bucket01...
+2025-04-19T13:20:00.919320+02:00  INFO object_storage_proxy::utils::validator: Callback returned: true
+2025-04-19T13:20:01.181775+02:00  INFO object_storage_proxy::credentials::secrets_proxy: No cached token found for proxy-bucket01, fetching ...
+2025-04-19T13:20:01.181859+02:00  INFO object_storage_proxy::credentials::secrets_proxy: Fetching bearer token for the API key
+2025-04-19T13:20:01.739385+02:00  INFO object_storage_proxy::credentials::secrets_proxy: Received access token
+2025-04-19T13:20:01.739600+02:00  INFO object_storage_proxy::credentials::secrets_proxy: Fetched new token for proxy-bucket01
+2025-04-19T13:20:01.739668+02:00  INFO object_storage_proxy: Sending request to upstream: https://proxy-bucket01.s3.eu-de.cloud-object-storage.appdomain.cloud/?list-type=2&prefix=&encoding-type=url
+2025-04-19T13:20:01.739922+02:00  INFO object_storage_proxy: Request sent to upstream.
+```
+
+

@@ -1,0 +1,38 @@
+site_name: ⚡4 - S4 Blazingly Fast Bucket Gateway
+theme:
+  name: material
+  custom_dir: overrides
+  palette:
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night 
+        name: Switch to dark mode
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/lightbulb-outline
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.top
+    - navigation.expand
+    - navigation.sections
+    - navigation.instant
+    - navigation.tracking
+    - navigation.search.highlight
+    - navigation.search.suggest
+    - navigation.search.share
+    - navigation.search.suggest
+    - navigation.search.share
+    - content.code.copy
+
+extra:
+  generator: false
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - codehilite
