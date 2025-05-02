@@ -1,4 +1,4 @@
-site_name: ⚡4 - S4 Blazingly Fast Bucket Gateway
+site_name: ⚡eclairo⚡ - Blazingly Fast Zero-Latency Bucket Gateway
 theme:
   name: material
   custom_dir: overrides
@@ -7,13 +7,13 @@ theme:
       primary: indigo
       accent: indigo
       toggle:
-        icon: material/weather-night 
+        icon: material/lightbulb-outline
         name: Switch to dark mode
     - scheme: default
       primary: indigo
       accent: indigo
       toggle:
-        icon: material/lightbulb-outline
+        icon: material/weather-night 
         name: Switch to light mode
   features:
     - navigation.tabs

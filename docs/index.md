@@ -1,9 +1,10 @@
-# Welcome to S4
+# Welcome to ⚡eclairo⚡
 
-A ⚡blazingly fast⚡ and safe in-process s3 gateway for AWS and IBM Cloud Object Storage buckets.
+A ⚡blazingly fast⚡ and safe in-process gateway for AWS and IBM Cloud Object Storage buckets.
 
 ## Features
 
+* Extremely fast zero-latency gateway
 * Compatible with anything that supports the AWS SDK -> aws cli/boto3, polars, spark, datafusion, Alteryx, Denodo, dbt, ...
 * Decouples frontend from backend authentication and authorization: plug in your authentication and authorization services. 
 * Flexible extensible Python configuration and interface: pass in callables for credentials fetching, validation, lookup secret for access_key (with cache).
@@ -11,6 +12,10 @@ A ⚡blazingly fast⚡ and safe in-process s3 gateway for AWS and IBM Cloud Obje
 * Seemlessly translate requests between path and virtual addressing style.
 * Compatible with corporate firewalled and proxied networks.
 
+
+## Architecture Overview
+
+![S4 Cloud Object Storage Reverse Proxy](img/s4_architecture.jpg)
 
 ## Quick example
 
