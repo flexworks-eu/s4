@@ -1,0 +1,27 @@
+name: Deploy on Main Merge
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Trigger deployment
+      run: |
+        response=$(curl -X POST https://deployer.opensourceworks.org/api/v1/deploy \
+             -H "X-Deploy-Token: ${{ secrets.DEPLOY_TOKEN }}" \
+             -d '{"name": "s4"}' \
+             -s -o response.txt -w "%{http_code}") 
+
+        if [ "$response" -ne 200 ]; then
+          echo "Deployment failed with status code: $response"
+          echo "Response body: $(cat response.txt)"
+          exit 1
+        else
+          echo "Deployment succeeded with status code: $response"
+          cat response.txt
+        fi

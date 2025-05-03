@@ -15,7 +15,7 @@ A ⚡blazingly fast⚡ and safe in-process gateway for AWS and IBM Cloud Object 
 
 ## Architecture Overview
 
-![S4 Cloud Object Storage Reverse Proxy](img/s4_architecture.jpg)
+![S4 Cloud Object Storage Reverse Proxy](img/architecture.png)
 
 ## Quick example
 
