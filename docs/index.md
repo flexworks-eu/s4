@@ -1,4 +1,4 @@
-# Welcome to ⚡eclairo⚡
+# Welcome to ⚡kwaimer⚡
 
 A ⚡blazingly fast⚡ and safe in-process gateway for AWS and IBM Cloud Object Storage buckets.
 
