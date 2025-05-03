@@ -4,18 +4,26 @@ A blazingly fast and safe in-process gateway for AWS and IBM Cloud Object Storag
 
 ## Features
 
-* Extremely fast zero-latency gateway
+* Scalable extremely fast zero-latency gateway
 * Compatible with anything that supports the AWS SDK -> aws cli/boto3, polars, spark, datafusion, Alteryx, Denodo, dbt, ...
 * Decouples frontend from backend authentication and authorization: plug in your authentication and authorization services. 
 * Flexible extensible Python configuration and interface: pass in callables for credentials fetching, validation, lookup secret for access_key (with cache).
 * Compatibility Gateway between systems that are limited to single hmac credentials pair, and distributed multi-vendor multi-credentials buckets backends.
 * Seemlessly translate requests between path and virtual addressing style.
 * Compatible with corporate firewalled and proxied networks.
+* Low-code integration in typical storage browsers with python backend (see [example #3](examples.md/#example%203))
 
 
 ## Architecture Overview
 
 ![S4 Cloud Object Storage Reverse Proxy](img/architecture.png)
+
+## Performance
+Performance is pretty good.  Even when using the python callback functions, since they're only called once and then cached for the remainder of the requests or until ttl expiration.
+
+An upload to aws bucket: osps is using &lt;osp⚡&gt; over https, myaws is direct.
+
+![aws upload](img/output.webp)
 
 ## Quick example
 

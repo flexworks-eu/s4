@@ -29,6 +29,9 @@ theme:
     - navigation.search.share
     - content.code.copy
 
+extra_css:
+  - https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css
+
 extra:
   generator: false
 
@@ -36,3 +39,4 @@ markdown_extensions:
   - pymdownx.highlight
   - pymdownx.superfences
   - codehilite
+  - attr_list
