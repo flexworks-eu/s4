@@ -216,30 +216,3 @@ Total Objects: 2
 $
 ```
 
-Server output:
-
-```log
-$ uv run python test_server.py
-2025-04-19T13:19:54.402023+02:00  INFO object_storage_proxy: Logger initialized; starting server on http port 6190 and https port 8443
-2025-04-19T13:19:54.402361+02:00  INFO object_storage_proxy: Bucket creds fetcher provided: Py(0x100210680)
-Fetching credentials for bucket01...
-2025-04-19T13:19:54.402485+02:00  INFO object_storage_proxy: Callback returned: Kn2t...
-[src/lib.rs:327:5] &run_args.cos_map = Py(
-    0x000000010061aa00,
-)
-2025-04-19T13:19:54.403738+02:00  INFO pingora_core::server: Bootstrap starting
-2025-04-19T13:19:54.403852+02:00  INFO pingora_core::server: Bootstrap done
-2025-04-19T13:19:54.424489+02:00  INFO pingora_core::server: Server starting
-PYTHON: Validating headers: MYLOCAL123 for proxy-bucket01...
-2025-04-19T13:19:58.124729+02:00  INFO object_storage_proxy::utils::validator: Callback returned: false
-PYTHON: Validating headers: MYLOCAL123 for proxy-bucket01...
-2025-04-19T13:20:00.919320+02:00  INFO object_storage_proxy::utils::validator: Callback returned: true
-2025-04-19T13:20:01.181775+02:00  INFO object_storage_proxy::credentials::secrets_proxy: No cached token found for proxy-bucket01, fetching ...
-2025-04-19T13:20:01.181859+02:00  INFO object_storage_proxy::credentials::secrets_proxy: Fetching bearer token for the API key
-2025-04-19T13:20:01.739385+02:00  INFO object_storage_proxy::credentials::secrets_proxy: Received access token
-2025-04-19T13:20:01.739600+02:00  INFO object_storage_proxy::credentials::secrets_proxy: Fetched new token for proxy-bucket01
-2025-04-19T13:20:01.739668+02:00  INFO object_storage_proxy: Sending request to upstream: https://proxy-bucket01.s3.eu-de.cloud-object-storage.appdomain.cloud/?list-type=2&prefix=&encoding-type=url
-2025-04-19T13:20:01.739922+02:00  INFO object_storage_proxy: Request sent to upstream.
-```
-
-
