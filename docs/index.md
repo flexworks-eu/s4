@@ -39,7 +39,7 @@ s3 =
 ```ini
 [osp]
 aws_access_key_id = MYLOCAL123  # <-- this could be an internal client identifier, to fetch openid connect/oauth2 token or anything that makes sense for your business
-aws_secret_access_key = nothingmeaningful # <-- private key to sign original request
+aws_secret_access_key = my_private_secret # <-- private key to sign original request
 ```
 
 Set up a minimal server implementation:
