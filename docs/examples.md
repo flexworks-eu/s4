@@ -7,12 +7,13 @@ Upload to an aws bucket. Profile osps is using &lt;osp⚡&gt; over https, myaws 
 
 ![duckdb](img/DuckDB_Logo-horizontal.svg){ width=120px }
 
-1. Generate some [TCPH](https://www.tpc.org/tpch/) testdata using <i class="fab fa-github"> </i> [dbgen](https://github.com/jeroenflvr/dbgen) with a table on an aws bucket and another table on an ibm cos bucket. 
+Generate some [TCPH](https://www.tpc.org/tpch/) testdata using <i class="fab fa-github"> </i> [dbgen](https://github.com/jeroenflvr/dbgen) with a table on an aws bucket and another table on an ibm cos bucket. 
 
 ![dbgen x10 (budget vm)](img/dbgen.webp)
 
+![spark](img/Apache_Spark_logo.svg){ width=120px }
 
-2. Create two views.  All using just 1 set of credentials.
+Create two views.  All using just 1 set of credentials.
 ```python
 import os
 from pyspark.sql import SparkSession
