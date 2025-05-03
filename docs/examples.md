@@ -13,7 +13,10 @@ Generate some [TCPH](https://www.tpc.org/tpch/) testdata using <i class="fab fa-
 
 ![spark](img/Apache_Spark_logo.svg){ width=120px }
 
-Create two views.  All using just 1 set of credentials.
+Create two dataframes from the tpc-h dataset generated earlier, for customer and orders.
+Get the top 10 customers.
+All using just 1 set of credentials.
+
 ```python
 import os
 from pyspark.sql import SparkSession
