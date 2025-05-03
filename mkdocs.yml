@@ -1,4 +1,4 @@
-site_name: ⚡osp⚡ - Blazingly Fast Zero-Latency Bucket Gateway
+site_name: <osp⚡> - Object Storage Proxy - Blazingly Fast Zero Latency Bucket Gateway
 theme:
   name: material
   custom_dir: overrides

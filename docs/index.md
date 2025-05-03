@@ -1,6 +1,6 @@
-# Welcome to ⚡osp⚡
+# Welcome to <osp⚡> Object Storage Proxy
 
-A ⚡blazingly fast⚡ and safe in-process gateway for AWS and IBM Cloud Object Storage buckets.
+A blazingly fast⚡ and safe in-process gateway for AWS and IBM Cloud Object Storage buckets.
 
 ## Features
 
