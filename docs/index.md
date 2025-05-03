@@ -1,4 +1,4 @@
-# Welcome to ⚡kwaimer⚡
+# Welcome to ⚡osp⚡
 
 A ⚡blazingly fast⚡ and safe in-process gateway for AWS and IBM Cloud Object Storage buckets.
 
