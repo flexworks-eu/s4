@@ -4,14 +4,16 @@ A blazingly fast and safe in-process gateway for AWS and IBM Cloud Object Storag
 
 ## Features
 
-* Scalable extremely fast zero-latency gateway
+* Scalable extremely fast zero-latency gateway.
 * Compatible with anything that supports the AWS SDK -> aws cli/boto3, polars, spark, datafusion, Alteryx, Denodo, dbt, ...
 * Decouples frontend from backend authentication and authorization: plug in your authentication and authorization services. 
 * Flexible extensible Python configuration and interface: pass in callables for credentials fetching, validation, lookup secret for access_key (with cache).
 * Compatibility Gateway between systems that are limited to single hmac credentials pair, and distributed multi-vendor multi-credentials buckets backends.
 * Seemlessly translate requests between path and virtual addressing style.
 * Compatible with corporate firewalled and proxied networks.
-* Low-code integration in typical storage browsers with python backend (see [example #3](examples.md/#example%203))
+* Low-code integration in typical storage browsers with python backend (see [example #3](examples.md/#example%203)).
+* Support for presigned urls the same way as regular requests.
+* Credentials support for hmac keypair and ibm api_key.
 
 
 ## Architecture Overview
@@ -31,21 +33,21 @@ With local configuration.
 
 ~/.aws/config
 ```ini
-[profile osp]
+[profile osps]
 region = eu-west-3
 output = json
 services = osp-services
 s3 =
     addressing_style = path
 
-[services osp-services]
+[services osps-services]
 s3 =
-  endpoint_url = http://localhost:6190
+  endpoint_url = https://localhost:8443
 ```
 
 ~/.aws/credentials
 ```ini
-[osp]
+[osps]
 aws_access_key_id = MYLOCAL123  # <-- this could be an internal client identifier, to fetch openid connect/oauth2 token or anything that makes sense for your business
 aws_secret_access_key = my_private_secret # <-- private key to sign original request
 ```
@@ -196,7 +198,7 @@ def main() -> None:
         bucket_creds_fetcher=do_hmac_creds,
         validator=do_validation,
         http_port=6190,
-        # https_port=8443,
+        https_port=8443,
         threads=1,
         # verify=False,
         hmac_keystore=hmac_keys,
@@ -224,3 +226,4 @@ Total Objects: 2
 $
 ```
 
+See more examples [here](examples.md).

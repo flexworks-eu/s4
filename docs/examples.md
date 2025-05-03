@@ -61,4 +61,7 @@ Using &lt;osp⚡&gt; as download/upload interface in a fastapi python backend (u
 
 When a download link is clicked, present a presigned link in either a dialog or hidden on the page and use javascript to click it so the download starts.
 
+## example 4
+Generate a presigned url against the &lt;osp⚡&gt; endpoint and download a file, going through the same &lt;osp⚡&gt; gateway.
 
+![presigned url download](img/presign_download.webp)
