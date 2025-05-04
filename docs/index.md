@@ -1,6 +1,6 @@
 # Welcome to &lt;osp⚡&gt; Object Storage Proxy
 
-A blazingly fast and safe in-process gateway for AWS and IBM Cloud Object Storage buckets.
+A blazingly fast and safe in-process gateway for AWS S3 and compatible services.
 
 ## Features
 
@@ -13,7 +13,7 @@ A blazingly fast and safe in-process gateway for AWS and IBM Cloud Object Storag
 * Compatible with corporate firewalled and proxied networks.
 * Low-code integration in typical storage browsers with python backend (see [example #3](examples.md/#example%203)).
 * Support for presigned urls the same way as regular requests.
-* Credentials support for hmac keypair and ibm api_key.
+* Credentials support for classic hmac keypair and IBM api_key authentication.
 
 
 ## Architecture Overview
@@ -23,7 +23,7 @@ A blazingly fast and safe in-process gateway for AWS and IBM Cloud Object Storag
 ## Performance
 Performance is pretty good.  Even when using the python callback functions, since they're only called once and then cached for the remainder of the requests or until ttl expiration.
 
-An upload to aws bucket: osps is using &lt;osp⚡&gt; over https, myaws is direct.
+An upload to aws bucket: the osps profile is using &lt;osp⚡&gt; over https, myaws is direct.
 
 ![aws upload](img/output.webp)
 
