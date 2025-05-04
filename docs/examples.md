@@ -1,9 +1,9 @@
-## example 1
-Upload to an aws bucket. Profile osps is using &lt;osp⚡&gt; over https, myaws is direct.
+## Upload to an aws bucket
+Profile osps is using &lt;osp⚡&gt; over https, myaws is direct.
 
 ![aws upload](img/output.webp)
 
-## example 2
+## Generate TPC-H test data using duckdb
 
 ![duckdb](img/DuckDB_Logo-horizontal.svg){ width=120px }
 
@@ -60,22 +60,20 @@ top10_customers.show(truncate=False)
 
 ![spark query](img/spark.webp)
 
-## example 3
+## Integrated in a Fastapi app
 Using &lt;osp⚡&gt; for download/upload interface within a fastapi python backend (using [&lt;/&gt; htmx](https://htmx.org/) for our convenience)
 
 Then, ie. When a download link is clicked, generate a presigned link in either a dialog for the user or hidden on the page and use javascript to initiate the download.
 
 
-## example 4
+## Presigned url
 Generate a presigned url against the &lt;osp⚡&gt; endpoint and download a file, going through the same &lt;osp⚡&gt; gateway.
 
 ![presigned url download](img/presign_download.webp)
 
-## example 5
+## Query from two different vendors using Presto
 ![presto logo](img/logo-presto-color.svg){ width=180px } 
-![hive logo](img/Apache_Hive_logo.svg){ width=140px }
-
-Using Presto with hive metastore.
+![hive logo](img/Apache_Hive_logo.svg){ width=120px }
 
 Create TPC-H customer and order tables using spark, on two different buckets, customer on aws and orders on ibm bucket.
 
