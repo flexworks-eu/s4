@@ -7,7 +7,7 @@ Profile osps is using &lt;osp⚡&gt; over https, myaws is direct.
 
 ![duckdb](img/DuckDB_Logo-horizontal.svg){ width=120px }
 
-Generate some [TCPH](https://www.tpc.org/tpch/) testdata using <i class="fab fa-github"> </i> [dbgen](https://github.com/jeroenflvr/dbgen) with a table on an aws bucket and another table on an ibm cos bucket. 
+Generate some [TPC-H](https://www.tpc.org/tpch/) testdata using <i class="fab fa-github"> </i> [dbgen](https://github.com/jeroenflvr/dbgen) with a table on an aws bucket and another table on an ibm cos bucket. 
 
 ![dbgen x10 (budget vm)](img/dbgen.webp)
 
