@@ -72,6 +72,9 @@ Generate a presigned url against the &lt;osp⚡&gt; endpoint and download a file
 ![presigned url download](img/presign_download.webp)
 
 ## example 5
+![presto logo](img/logo-presto-color.svg){ width=180px } 
+![hive logo](img/Apache_Hive_logo.svg){ width=140px }
+
 Using Presto with hive metastore.
 
 Create TPC-H customer and order tables using spark, on two different buckets, customer on aws and orders on ibm bucket.
@@ -134,7 +137,6 @@ spark.stop()
 ```
 
 Tables
-
 ```SQL
 [root@dbc8ec99fdc5 /]# presto-cli --server localhost:8080 --catalog hive --schema default
 presto:default> SHOW CREATE TABLE hive.default.customer;
