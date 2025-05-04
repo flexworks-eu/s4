@@ -1,0 +1,16 @@
+Personal Use License
+
+Copyright (c) 2025 [Flexworks].
+
+This software is free for private, personal, non-commercial use by individuals.
+
+Commercial use, including use by companies, organizations, governments, or educational institutions, requires a paid commercial license.
+
+You may not:
+- Use this software in any organization, business, or government setting without a commercial license.
+- Sell, sublicense, redistribute, or publicly host this software.
+- Modify and distribute modifications of this software.
+
+To obtain a commercial license, please contact: [✉️ info@flexworks.eu](mailto:info@flexworks.eu).
+
+All rights not explicitly granted are reserved by the copyright holder.
