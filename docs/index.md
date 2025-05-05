@@ -158,6 +158,7 @@ def main() -> None:
         "proxy-bucket01": {
             "host": "s3.eu-de.cloud-object-storage.appdomain.cloud",
             "region": "eu-de",
+            # credentials will be fetched by the Python bucket_creds_fetcher() callable
             # "access_key": os.getenv("ACCESS_KEY"),
             # "secret_key": os.getenv("SECRET_KEY"),
             "port": 443,
