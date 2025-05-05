@@ -60,10 +60,11 @@ top10_customers.show(truncate=False)
 
 ![spark query](img/spark.webp)
 
-## Integrated in a Fastapi app
+## 🔜 Integrated in a Fastapi app
+
 Using &lt;osp⚡&gt; for download/upload interface within a fastapi python backend (using [&lt;/&gt; htmx](https://htmx.org/) for our convenience)
 
-Then, ie. When a download link is clicked, generate a presigned link in either a dialog for the user or hidden on the page and use javascript to initiate the download.
+Then, ie. when a download link is clicked, generate a presigned link in either a dialog for the user or hidden on the page and use javascript to initiate the download.
 
 
 ## Presigned url
