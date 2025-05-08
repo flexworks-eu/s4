@@ -1,10 +1,10 @@
 # Welcome to &lt;osp⚡&gt; Object Storage Proxy
 
-A blazingly fast and safe in-process gateway for AWS S3 and compatible services (IBM Cloud Object Storage, Minio, ...).
+A fast and safe in-process gateway for AWS S3 and compatible services (IBM Cloud Object Storage, Minio, ...).
 
 ## Features
 
-* Scalable extremely fast zero-latency gateway.
+* Scalable fast in-process gateway.
 * Compatible with anything that supports the AWS SDK -> aws cli/boto3, Polars, Spark, Datafusion, Presto, dbt, ...
 * Decouples frontend from backend authentication and authorization: plug in your authentication and authorization services. 
 * Flexible extensible Python configuration and interface: pass in callables for credentials fetching, validation, lookup secret for access_key (with cache).
