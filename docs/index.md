@@ -10,7 +10,7 @@ A fast and safe in-process gateway for AWS S3 and compatible services (IBM Cloud
 Drop this proxy in front of S3, GCS, IBM COS, Azure Blob, MinIO, or Ceph. It accepts whatever your users already have—OIDC, SAML, JWT, mTLS—then transparently signs and routes the request to the right backend. No hard-coded keys, no presigned URLs, no code changes.
 
 ### 🔒 Single-Point Policy Enforcement  
-Write authorization rules once in **Python** (or call OPA, Redis, SQL—your choice). The proxy evaluates them *in-process* on every `DELETE`/`GET`/`HEAD`/`LIST`/`POST`/`PUT`, so compliance checks and tenant isolation happen at wire-speed, not in scattered app code.
+Write authorization rules once in **Python** (or call OPA, Redis, SQL—your choice). The proxy evaluates them *in-process* on every `DELETE`/`GET`/`HEAD`/`LIST`/`POST`/`PUT`/`...`, so compliance checks and tenant isolation happen at wire-speed, not in scattered app code.
 
 ### ⚡ Zero Extra Hop, Wire-Speed Throughput  
 Because auth and streaming live in the **same memory space**, there’s no second network trip like with sidecars or external gateways. Data flows straight from bucket to client—up to **40 % lower p99 latency** in real-world benchmarks.
