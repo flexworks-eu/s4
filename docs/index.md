@@ -45,7 +45,7 @@ Built-in Prometheus metrics and OpenTelemetry traces wrap the exact bytes crossi
 * Compatibility Gateway between systems that are limited to single hmac credentials pair, and distributed multi-vendor multi-credentials buckets backends.
 * Seemlessly translate requests between path and virtual addressing style.
 * Compatible with corporate firewalled and proxied networks.
-* Low-code integration in typical storage browsers with python backend (see [example #3](examples.md/#integrated-in-a-fastapi-app)).
+* Low-code integration in typical storage browsers with python backend (see [example #3](index.md/#integrated-in-a-fastapi-app)).
 * Support for presigned urls the same way as regular requests.
 * Credentials support for classic hmac keypair and IBM api_key authentication.
 
@@ -331,7 +331,7 @@ Total Objects: 2
 $
 ```
 
-See more examples [here](examples.md).
+See more examples [here](index.md#more-examples).
 
 ## More Examples
 

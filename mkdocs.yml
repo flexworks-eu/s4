@@ -1,4 +1,9 @@
 site_name: '&lt;osp⚡&gt; Object Storage Proxy - Fast And Safe In-Process Bucket Gateway'
+site_url: https://osp.flexworks.eu/
+site_description: >
+  OSP is an ultra-low-latency object-storage proxy that adds policy,
+  auth and observability to any S3-compatible backend. 
+  Speed, Security, Simplicity. Pick three.
 theme:
   name: material
   custom_dir: overrides
