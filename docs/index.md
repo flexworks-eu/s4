@@ -27,7 +27,7 @@ Built-in Prometheus metrics and OpenTelemetry traces wrap the exact bytes crossi
 
 | Pain Point | How We Solve It |
 |------------|-----------------|
-| **Credentials sprawl & secret leaks** | Front-end receives tokens; only the proxy holds bucket keys, so nothing sensitive reaches browsers or notebooks. |
+| **Credentials sprawl & secret leaks** | Front-end receives tokens; only the proxy holds bucket keys, so nothing sensitive reaches clients, browsers or notebooks. |
 | **Slow, brittle presigned URL workflows** | Users hit one stable URL; the proxy handles signing on the fly. |
 | **Duplicate auth logic in every service** | Central policy engine with Python hooks—change rules in one place. |
 | **Vendor lock-in & expensive rewrites** | Abstracts away bucket type; switch providers or split traffic without touching client code. |
