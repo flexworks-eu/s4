@@ -45,4 +45,3 @@ markdown_extensions:
   - pymdownx.superfences
   - codehilite
   - attr_list
-  - pymdownx.superfences

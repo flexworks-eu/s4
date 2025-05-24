@@ -1,4 +1,4 @@
-# Welcome to &lt;osp⚡&gt; Object Storage Proxy
+# &lt;osp⚡&gt; Object Storage Proxy
 
 A fast and safe in-process gateway for AWS S3 and compatible services (IBM Cloud Object Storage, Minio, ...).
 
@@ -12,11 +12,10 @@ Drop this proxy in front of S3, GCS, IBM COS, Azure Blob, MinIO, or Ceph. It acc
 ### 🔒 Single-Point Policy Enforcement  
 Write authorization rules once in **Python** (or call OPA, Redis, SQL—your choice). The proxy evaluates them *in-process* on every `DELETE`/`GET`/`HEAD`/`LIST`/`POST`/`PUT`/`...`, so compliance checks and tenant isolation happen at wire-speed, not in scattered app code.
 
+<span style="color: white; background-color: red; padding: 2px 5px; border-radius: 3px; font-weight: bold;">NEW!</span> Apply fine-grained permissions on any prefix, make exceptions, etc.
+
 ### ⚡ Zero Extra Hop, Wire-Speed Throughput  
 Because auth and streaming live in the **same memory space**, there’s no second network trip like with sidecars or external gateways. Data flows straight from bucket to client—up to **40 % lower p99 latency** in real-world benchmarks.
-
-### 🌍 Cloud- & Region-Agnostic  
-Need to keep EU data in Frankfurt and US data in Ohio? Route on-the-fly. Migrating from on-prem to cloud? Flip a config flag; clients never notice. Your storage strategy stays flexible—and future-proof.
 
 ### 📊 Observability Where It Counts  
 Built-in Prometheus metrics and OpenTelemetry traces wrap the exact bytes crossing the wire. You’ll see authentication failures, object sizes, and transfer times without bolting Lua or WASM onto a generic proxy.
@@ -48,6 +47,8 @@ Built-in Prometheus metrics and OpenTelemetry traces wrap the exact bytes crossi
 * Low-code integration in typical storage browsers with python backend (see [example #3](index.md/#integrated-in-a-fastapi-app)).
 * Support for presigned urls the same way as regular requests.
 * Credentials support for classic hmac keypair and IBM api_key authentication.
+* <span style="color: white; background-color: red; padding: 2px 5px; border-radius: 3px; font-weight: bold;">NEW!</span> Apply fine-grained permissions on any prefix, make exceptions
+
 
 
 ## Architecture Overview
