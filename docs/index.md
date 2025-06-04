@@ -534,4 +534,4 @@ Query tables using presto-cli
 
 ## Contact
 
-[✉️ Get in touch at jeroen@flexworks.eu](mailto:jeroen@flexworks.eu)
+[✉️ Get in touch](mailto:jeroen@flexworks.eu)
