@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://osp.flexworks.eu/sitemap.xml

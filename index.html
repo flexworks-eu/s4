@@ -1,0 +1,1439 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="OSP is an ultra-low-latency object-storage proxy that adds policy, auth and observability to any S3-compatible backend.  Speed, Security, Simplicity. Pick three.
+">
+      
+      
+      
+        <link rel="canonical" href="https://osp.flexworks.eu/">
+      
+      
+      
+        <link rel="next" href="license/">
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>&lt;osp⚡&gt; Object Storage Proxy - Fast And Safe In-Process Bucket Gateway</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#osp-object-storage-proxy" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="&amp;lt;osp⚡&amp;gt; Object Storage Proxy - Fast And Safe In-Process Bucket Gateway" class="md-header__button md-logo" aria-label="&lt;osp⚡&gt; Object Storage Proxy - Fast And Safe In-Process Bucket Gateway" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            &lt;osp⚡&gt; Object Storage Proxy - Fast And Safe In-Process Bucket Gateway
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              &lt;osp⚡&gt; Object Storage Proxy
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="." class="md-tabs__link">
+        
+  
+  
+    
+  
+  &lt;osp⚡&gt; Object Storage Proxy
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="license/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  License
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="&amp;lt;osp⚡&amp;gt; Object Storage Proxy - Fast And Safe In-Process Bucket Gateway" class="md-nav__button md-logo" aria-label="&lt;osp⚡&gt; Object Storage Proxy - Fast And Safe In-Process Bucket Gateway" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    &lt;osp⚡&gt; Object Storage Proxy - Fast And Safe In-Process Bucket Gateway
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    &lt;osp⚡&gt; Object Storage Proxy
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    &lt;osp⚡&gt; Object Storage Proxy
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-osp-does-why-it-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      What &lt;osp⚡&gt; Does &amp; Why It Matters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What &lt;osp⚡&gt; Does &amp; Why It Matters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instant-identity-aware-access-to-any-bucket" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Instant, Identity-Aware Access to Any Bucket
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#single-point-policy-enforcement" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔒 Single-Point Policy Enforcement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zero-extra-hop-wire-speed-throughput" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚡ Zero Extra Hop, Wire-Speed Throughput
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#observability-where-it-counts" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Observability Where It Counts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-problems-osp-eliminates" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Problems &lt;osp⚡&gt; Eliminates
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Proxy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buckets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Buckets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-callback-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Python callback functions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#full-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Full example
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#more-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      More Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="More Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#upload-to-an-aws-bucket" class="md-nav__link">
+    <span class="md-ellipsis">
+      Upload to an aws bucket
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generate-tpc-h-test-data-using-duckdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generate TPC-H test data using duckdb
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integrated-in-a-fastapi-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔜 Integrated in a Fastapi app
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presigned-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      Presigned url
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-from-two-different-vendors-using-presto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query from two different vendors using Presto
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contact" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contact
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="license/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    License
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-osp-does-why-it-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      What &lt;osp⚡&gt; Does &amp; Why It Matters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What &lt;osp⚡&gt; Does &amp; Why It Matters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instant-identity-aware-access-to-any-bucket" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Instant, Identity-Aware Access to Any Bucket
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#single-point-policy-enforcement" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔒 Single-Point Policy Enforcement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zero-extra-hop-wire-speed-throughput" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚡ Zero Extra Hop, Wire-Speed Throughput
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#observability-where-it-counts" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Observability Where It Counts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-problems-osp-eliminates" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Problems &lt;osp⚡&gt; Eliminates
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Proxy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buckets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Buckets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-callback-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Python callback functions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#full-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Full example
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#more-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      More Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="More Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#upload-to-an-aws-bucket" class="md-nav__link">
+    <span class="md-ellipsis">
+      Upload to an aws bucket
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generate-tpc-h-test-data-using-duckdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generate TPC-H test data using duckdb
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integrated-in-a-fastapi-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔜 Integrated in a Fastapi app
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presigned-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      Presigned url
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-from-two-different-vendors-using-presto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query from two different vendors using Presto
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contact" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contact
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="osp-object-storage-proxy">&lt;osp⚡&gt; Object Storage Proxy</h1>
+<p>A fast and safe in-process gateway for AWS S3 and compatible services (IBM Cloud Object Storage, Minio, ...).</p>
+<p><em>⎯ Speed, Security, Simplicity. Pick three. ⎯</em></p>
+<h2 id="what-osp-does-why-it-matters">What &lt;osp⚡&gt; Does &amp; Why It Matters</h2>
+<h3 id="instant-identity-aware-access-to-any-bucket">🚀 Instant, Identity-Aware Access to Any Bucket</h3>
+<p>Drop this proxy in front of S3, GCS, IBM COS, Azure Blob, MinIO, or Ceph. It accepts whatever your users already have—OIDC, SAML, JWT, mTLS—then transparently signs and routes the request to the right backend. No hard-coded keys, no presigned URLs, no code changes.</p>
+<h3 id="single-point-policy-enforcement">🔒 Single-Point Policy Enforcement</h3>
+<p>Write authorization rules once in <strong>Python</strong> (or call OPA, Redis, SQL—your choice). The proxy evaluates them <em>in-process</em> on every <code>DELETE</code>/<code>GET</code>/<code>HEAD</code>/<code>LIST</code>/<code>POST</code>/<code>PUT</code>/<code>...</code>, so compliance checks and tenant isolation happen at wire-speed, not in scattered app code.</p>
+<p><span style="color: white; background-color: red; padding: 2px 5px; border-radius: 3px; font-weight: bold;">NEW!</span> Apply fine-grained permissions on any prefix, make exceptions, etc.</p>
+<h3 id="zero-extra-hop-wire-speed-throughput">⚡ Zero Extra Hop, Wire-Speed Throughput</h3>
+<p>Because auth and streaming live in the <strong>same memory space</strong>, there’s no second network trip like with sidecars or external gateways. Data flows straight from bucket to client—up to <strong>40 % lower p99 latency</strong> in real-world benchmarks.</p>
+<h3 id="observability-where-it-counts">📊 Observability Where It Counts</h3>
+<p>Built-in Prometheus metrics and OpenTelemetry traces wrap the exact bytes crossing the wire. You’ll see authentication failures, object sizes, and transfer times without bolting Lua or WASM onto a generic proxy.</p>
+<hr />
+<h3 id="the-problems-osp-eliminates">The Problems &lt;osp⚡&gt; Eliminates</h3>
+<table>
+<thead>
+<tr>
+<th>Pain Point</th>
+<th>How We Solve It</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Credentials sprawl &amp; secret leaks</strong></td>
+<td>Front-end receives tokens; only the proxy holds bucket keys, so nothing sensitive reaches clients, browsers or notebooks.</td>
+</tr>
+<tr>
+<td><strong>Slow, brittle presigned URL workflows</strong></td>
+<td>Users hit one stable URL; the proxy handles signing on the fly.</td>
+</tr>
+<tr>
+<td><strong>Duplicate auth logic in every service</strong></td>
+<td>Central policy engine with Python hooks—change rules in one place.</td>
+</tr>
+<tr>
+<td><strong>Vendor lock-in &amp; expensive rewrites</strong></td>
+<td>Abstracts away bucket type; switch providers or split traffic without touching client code.</td>
+</tr>
+<tr>
+<td><strong>Complex proxies that require custom plugins</strong></td>
+<td>Lightweight binary / <code>pip</code> package; you extend it with plain Python, not unfamiliar DSLs.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Bottom line:</strong> &lt;osp⚡&gt; turns object-storage access into a fast, secure, one-line integration—so your team ships features instead of fighting buckets.</p>
+</blockquote>
+<h2 id="features">Features</h2>
+<ul>
+<li>Scalable fast in-process gateway.</li>
+<li>Compatible with anything that supports the AWS SDK -&gt; aws cli/boto3, Polars, Spark, Datafusion, Presto, dbt, ...</li>
+<li>Decouples frontend from backend authentication and authorization: plug in your authentication and authorization services. </li>
+<li>Flexible extensible Python configuration and interface: pass in callables for credentials fetching, validation, lookup secret for access_key (with cache).</li>
+<li>Compatibility Gateway between systems that are limited to single hmac credentials pair, and distributed multi-vendor multi-credentials buckets backends.</li>
+<li>Seemlessly translate requests between path and virtual addressing style.</li>
+<li>Compatible with corporate firewalled and proxied networks.</li>
+<li>Low-code integration in typical storage browsers with python backend (see <a href="./#integrated-in-a-fastapi-app">example #3</a>).</li>
+<li>Support for presigned urls the same way as regular requests.</li>
+<li>Credentials support for classic hmac keypair and IBM api_key authentication.</li>
+<li><span style="color: white; background-color: red; padding: 2px 5px; border-radius: 3px; font-weight: bold;">NEW!</span> Apply fine-grained permissions on any prefix, make exceptions</li>
+</ul>
+<h2 id="architecture-overview">Architecture Overview</h2>
+<p><img alt="S4 Cloud Object Storage Reverse Proxy" src="img/architecture.png" /></p>
+<h2 id="performance">Performance</h2>
+<p>Performance is pretty good.  Even when using the python callback functions, since they're only called once and then cached for the remainder of the requests or until ttl expiration.</p>
+<p>An upload to aws bucket: the osps profile is using &lt;osp⚡&gt; over https, myaws is direct.</p>
+<p><img alt="aws upload" src="img/output.webp" /></p>
+<h2 id="configuration">Configuration</h2>
+<h3 id="proxy">Proxy</h3>
+<div class="highlight"><pre><span></span><code>    <span class="n">ProxyServerConfig</span><span class="p">(</span>
+        <span class="n">cos_map</span><span class="o">=</span><span class="n">cos_map</span><span class="p">,</span>
+        <span class="n">bucket_creds_fetcher</span><span class="o">=</span><span class="n">fetch_hmac_creds</span><span class="p">,</span>
+        <span class="n">validator</span><span class="o">=</span><span class="n">do_validation</span><span class="p">,</span>
+        <span class="n">http_port</span><span class="o">=</span><span class="mi">6190</span><span class="p">,</span>
+        <span class="n">https_port</span><span class="o">=</span><span class="mi">8443</span><span class="p">,</span>
+        <span class="n">threads</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">hmac_keystore</span><span class="o">=</span><span class="n">hmac_keys</span><span class="p">,</span>
+        <span class="n">skip_signature_validation</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">hmac_fetcher</span><span class="o">=</span><span class="n">lookup_secret_key</span>
+    <span class="p">)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>argument</th>
+<th>description</th>
+<th>optional</th>
+<th>default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cos_map</td>
+<td>bucket configuration, see below</td>
+<td></td>
+<td>NA</td>
+</tr>
+<tr>
+<td>bucket_creds_fetcher</td>
+<td>python callable to retrieve credentials for a given bucket, to return either api key or hmac key pair</td>
+<td>✅</td>
+<td>NA</td>
+</tr>
+<tr>
+<td>validator</td>
+<td>python callable, validates access for a given token/bucket combination</td>
+<td>✅</td>
+<td>NA</td>
+</tr>
+<tr>
+<td>http_port</td>
+<td>server listener port on http</td>
+<td>✅ at least http_port or https_port, or both</td>
+<td>NA</td>
+</tr>
+<tr>
+<td>https_port</td>
+<td>server listener port on https</td>
+<td>✅ at least http_port or https_port, or both</td>
+<td>NA</td>
+</tr>
+<tr>
+<td>threads</td>
+<td>number of service threads</td>
+<td>✅</td>
+<td>1</td>
+</tr>
+<tr>
+<td>verify</td>
+<td>ignore ssl verification errors on backend storage (for dev purposes)</td>
+<td>✅</td>
+<td>False</td>
+</tr>
+<tr>
+<td>hmac_keystore</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>skip_signature_validation</td>
+<td>ignore ssl verification errors on frontend (for dev purposes)</td>
+<td>✅</td>
+<td>False</td>
+</tr>
+<tr>
+<td>hmac_fetcher</td>
+<td>python callable, gets the private/secret key for a given public/access key</td>
+<td> ✅</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
+<h3 id="buckets">Buckets</h3>
+<ul>
+<li>endpoint host</li>
+<li>port</li>
+<li>api key (optional)</li>
+<li>hmac access key (optional)</li>
+<li>hmac secret key (optional)</li>
+<li>ttl (optional, default 300) -&gt; keep this reasonably short, but size to your needs</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">cos_map</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;proxy-bucket01&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="err">&lt;</span><span class="mi">-</span><span class="w"> </span><span class="kc">n</span><span class="err">o</span><span class="w"> </span><span class="err">keys</span><span class="p">,</span><span class="w"> </span><span class="err">will</span><span class="w"> </span><span class="err">be</span><span class="w"> </span><span class="kc">fet</span><span class="err">ched</span><span class="w"> </span><span class="err">a</span><span class="kc">t</span><span class="w"> </span><span class="kc">f</span><span class="err">irs</span><span class="kc">t</span><span class="w"> </span><span class="err">call</span>
+<span class="w">        </span><span class="nt">&quot;host&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;s3.eu-de.cloud-object-storage.appdomain.cloud&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">443</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ttl&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;proxy-aws-bucket01&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;host&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;s3.eu-west-3.amazonaws.com&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;region&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eu-west-3&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;access_key&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">os.ge</span><span class="kc">ten</span><span class="err">v(</span><span class="s2">&quot;AWS_ACCESS_KEY&quot;</span><span class="err">)</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;secret_key&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">os.ge</span><span class="kc">ten</span><span class="err">v(</span><span class="s2">&quot;AWS_SECRET_KEY&quot;</span><span class="err">)</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">443</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ttl&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span>
+<span class="w">    </span><span class="p">}</span><span class="w">    </span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="python-callback-functions">Python callback functions</h3>
+<table>
+<thead>
+<tr>
+<th>argument</th>
+<th>description</th>
+<th>signature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bucket_creds_fetcher</td>
+<td>python callable to retrieve credentials for a given bucket, to return either api key or hmac key pair</td>
+<td><pre><code class="language-python">def callable(token: str, bucket: str) -&gt; str </code></pre></td>
+</tr>
+<tr>
+<td>validator</td>
+<td>python callable, validates access for a given token/bucket combination</td>
+<td><pre><code class="language-python">def callable(token: str, bucket: str) -&gt; bool </code></pre></td>
+</tr>
+<tr>
+<td>hmac_fetcher</td>
+<td>python callable, gets the private/secret key for a given public/access key</td>
+<td><pre><code class="language-python">def callable(access_key: str) -&gt; Optional[str ] </code></pre></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">do_hmac_creds</span><span class="p">(</span><span class="n">token</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">bucket</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Fetch HMAC credentials (ro, rw, access_denied) for the given bucket, depending on the token &quot;&quot;&quot;</span>
+    <span class="n">access_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;ACCESS_KEY&quot;</span><span class="p">)</span>
+    <span class="n">secret_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;SECRET_KEY&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">access_key</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">secret_key</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;ACCESS_KEY or SECRET_KEY environment variable not set&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fetching HMAC credentials for </span><span class="si">{</span><span class="n">bucket</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span>
+        <span class="s2">&quot;access_key&quot;</span><span class="p">:</span> <span class="n">access_key</span><span class="p">,</span>
+        <span class="s2">&quot;secret_key&quot;</span><span class="p">:</span> <span class="n">secret_key</span>
+    <span class="p">})</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">lookup_secret_key</span><span class="p">(</span><span class="n">access_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="c1"># get all environment variables ending in ACCESS_KEY</span>
+    <span class="n">access_keys</span> <span class="o">=</span> <span class="p">[{</span><span class="n">key</span><span class="p">:</span><span class="n">value</span><span class="p">}</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">key</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;ACCESS_KEY&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">value</span><span class="o">==</span><span class="n">access_key</span> <span class="p">]</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">access_keys</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">access_key_var</span> <span class="o">=</span> <span class="nb">next</span><span class="p">((</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">access_keys</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="o">==</span> <span class="n">access_key</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="n">secret_key_var</span> <span class="o">=</span> <span class="n">access_key_var</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;ACCESS_KEY&quot;</span><span class="p">,</span> <span class="s2">&quot;SECRET_KEY&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="n">secret_key_var</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;no access keys found for : </span><span class="si">{</span><span class="n">access_key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">do_validation</span><span class="p">(</span><span class="n">token</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">bucket</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Authorize the request based on token for the given bucket. </span>
+<span class="sd">        You can plug in your own authorization service here.</span>
+<span class="sd">        The token is a client identifier used to fetch an authorization token and further authenticate/authorize.</span>
+<span class="sd">        The bucket is the bucket name.</span>
+<span class="sd">        The function should return True if the request is authorized, False otherwise.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;PYTHON: Validating headers: </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2"> for </span><span class="si">{</span><span class="n">bucket</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+    <span class="c1"># return random.choice([True, False])</span>
+    <span class="k">return</span> <span class="kc">True</span>
+</code></pre></div>
+<h2 id="full-example">Full example</h2>
+<p>With local configuration.</p>
+<p>~/.aws/config
+<div class="highlight"><pre><span></span><code><span class="k">[profile osps]</span>
+<span class="na">region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">eu-west-3</span>
+<span class="na">output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">json</span>
+<span class="na">services</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">osp-services</span>
+<span class="na">s3</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="na">addressing_style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">path</span>
+
+<span class="k">[services osps-services]</span>
+<span class="na">s3</span><span class="w"> </span><span class="o">=</span>
+<span class="w">  </span><span class="na">endpoint_url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">https://localhost:8443</span>
+</code></pre></div></p>
+<p>~/.aws/credentials
+<div class="highlight"><pre><span></span><code><span class="k">[osps]</span>
+<span class="na">aws_access_key_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">MYLOCAL123</span><span class="w">  </span><span class="c1"># &lt;-- this could be an internal client identifier, to fetch openid connect/oauth2 token or anything that makes sense for your business</span>
+<span class="na">aws_secret_access_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">my_private_secret</span><span class="w"> </span><span class="c1"># &lt;-- private key to sign original request</span>
+</code></pre></div></p>
+<p>Set up a minimal server implementation:
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">strtobool</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">object_storage_proxy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">osp</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">object_storage_proxy</span><span class="w"> </span><span class="kn">import</span> <span class="n">start_server</span><span class="p">,</span> <span class="n">ProxyServerConfig</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">do_api_creds</span><span class="p">(</span><span class="n">token</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">bucket</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fetch credentials (ro, rw, access_denied) for the given bucket, depending on the token. &quot;&quot;&quot;</span>
+    <span class="n">apikey</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;COS_API_KEY&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">apikey</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;COS_API_KEY environment variable not set&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fetching credentials for </span><span class="si">{</span><span class="n">bucket</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">apikey</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">do_hmac_creds</span><span class="p">(</span><span class="n">token</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">bucket</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Fetch HMAC credentials (ro, rw, access_denied) for the given bucket, depending on the token &quot;&quot;&quot;</span>
+    <span class="n">access_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;ACCESS_KEY&quot;</span><span class="p">)</span>
+    <span class="n">secret_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;SECRET_KEY&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">access_key</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">secret_key</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;ACCESS_KEY or SECRET_KEY environment variable not set&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fetching HMAC credentials for </span><span class="si">{</span><span class="n">bucket</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span>
+        <span class="s2">&quot;access_key&quot;</span><span class="p">:</span> <span class="n">access_key</span><span class="p">,</span>
+        <span class="s2">&quot;secret_key&quot;</span><span class="p">:</span> <span class="n">secret_key</span>
+    <span class="p">})</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">lookup_secret_key</span><span class="p">(</span><span class="n">access_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="c1"># get all environment variables ending in ACCESS_KEY</span>
+    <span class="n">access_keys</span> <span class="o">=</span> <span class="p">[{</span><span class="n">key</span><span class="p">:</span><span class="n">value</span><span class="p">}</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">key</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;ACCESS_KEY&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">value</span><span class="o">==</span><span class="n">access_key</span> <span class="p">]</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">access_keys</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">access_key_var</span> <span class="o">=</span> <span class="nb">next</span><span class="p">((</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">access_keys</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="o">==</span> <span class="n">access_key</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="n">secret_key_var</span> <span class="o">=</span> <span class="n">access_key_var</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;ACCESS_KEY&quot;</span><span class="p">,</span> <span class="s2">&quot;SECRET_KEY&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="n">secret_key_var</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;no access keys found for : </span><span class="si">{</span><span class="n">access_key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">do_validation</span><span class="p">(</span><span class="n">token</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">bucket</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Authorize the request based on token for the given bucket. </span>
+<span class="sd">        You can plug in your own authorization service here.</span>
+<span class="sd">        The token is a client identifier used to fetch an authorization token and further authenticate/authorize.</span>
+<span class="sd">        The bucket is the bucket name.</span>
+<span class="sd">        The function should return True if the request is authorized, False otherwise.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;PYTHON: Validating headers: </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2"> for </span><span class="si">{</span><span class="n">bucket</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">True</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">load_dotenv</span><span class="p">()</span>
+
+    <span class="n">counting</span> <span class="o">=</span> <span class="n">strtobool</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;OSP_ENABLE_REQUEST_COUNTING&quot;</span><span class="p">,</span> <span class="s2">&quot;false&quot;</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">counting</span><span class="p">:</span>
+        <span class="n">osp</span><span class="o">.</span><span class="n">enable_request_counting</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Request counting enabled&quot;</span><span class="p">)</span>
+
+    <span class="n">apikey</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;COS_API_KEY&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">apikey</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;COS_API_KEY environment variable not set&quot;</span><span class="p">)</span>
+
+    <span class="n">cos_map</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;proxy-bucket01&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;host&quot;</span><span class="p">:</span> <span class="s2">&quot;s3.eu-de.cloud-object-storage.appdomain.cloud&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;region&quot;</span><span class="p">:</span> <span class="s2">&quot;eu-de&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;port&quot;</span><span class="p">:</span> <span class="mi">443</span><span class="p">,</span>
+            <span class="s2">&quot;ttl&quot;</span><span class="p">:</span> <span class="mi">300</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;proxy-aws-bucket01&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;host&quot;</span><span class="p">:</span> <span class="s2">&quot;s3.eu-west-3.amazonaws.com&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;region&quot;</span><span class="p">:</span> <span class="s2">&quot;eu-west-3&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;access_key&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;AWS_ACCESS_KEY&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;secret_key&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;AWS_SECRET_KEY&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;port&quot;</span><span class="p">:</span> <span class="mi">443</span><span class="p">,</span>
+            <span class="s2">&quot;ttl&quot;</span><span class="p">:</span> <span class="mi">300</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">hmac_keys</span><span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;access_key&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;LOCAL2_ACCESS_KEY&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;secret_key&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;LOCAL2_SECRET_KEY&quot;</span><span class="p">)</span>
+        <span class="p">},</span>
+
+    <span class="p">]</span>
+
+    <span class="n">ra</span> <span class="o">=</span> <span class="n">ProxyServerConfig</span><span class="p">(</span>
+        <span class="n">cos_map</span><span class="o">=</span><span class="n">cos_map</span><span class="p">,</span>
+        <span class="n">bucket_creds_fetcher</span><span class="o">=</span><span class="n">do_hmac_creds</span><span class="p">,</span>
+        <span class="n">validator</span><span class="o">=</span><span class="n">do_validation</span><span class="p">,</span>
+        <span class="n">http_port</span><span class="o">=</span><span class="mi">6190</span><span class="p">,</span>
+        <span class="n">https_port</span><span class="o">=</span><span class="mi">8443</span><span class="p">,</span>
+        <span class="n">threads</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="c1"># verify=False, &lt;-- DEV/TEST only</span>
+        <span class="n">hmac_keystore</span><span class="o">=</span><span class="n">hmac_keys</span><span class="p">,</span>
+        <span class="n">skip_signature_validation</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">hmac_fetcher</span><span class="o">=</span><span class="n">lookup_secret_key</span>
+    <span class="p">)</span>
+
+    <span class="n">start_server</span><span class="p">(</span><span class="n">ra</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre></div></p>
+<p>Run with <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">aws-cli</a> (but could be anything compatible with the aws s3 api like polars, spark, presto, ...):</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>aws<span class="w"> </span>s3<span class="w"> </span>ls<span class="w"> </span>s3://proxy-bucket01/<span class="w"> </span>--recursive<span class="w"> </span>--summarize<span class="w"> </span>--human-readable<span class="w"> </span>--profile<span class="w"> </span>osp
+<span class="m">2025</span>-04-17<span class="w"> </span><span class="m">17</span>:45:30<span class="w">   </span><span class="m">33</span><span class="w"> </span>Bytes<span class="w"> </span>README.md
+<span class="m">2025</span>-04-17<span class="w"> </span><span class="m">17</span>:48:04<span class="w">   </span><span class="m">33</span><span class="w"> </span>Bytes<span class="w"> </span>README2.md
+
+Total<span class="w"> </span>Objects:<span class="w"> </span><span class="m">2</span>
+<span class="w">   </span>Total<span class="w"> </span>Size:<span class="w"> </span><span class="m">66</span><span class="w"> </span>Bytes
+$
+</code></pre></div>
+<p>See more examples <a href="./#more-examples">here</a>.</p>
+<h2 id="more-examples">More Examples</h2>
+<h3 id="upload-to-an-aws-bucket">Upload to an aws bucket</h3>
+<p>Profile osps is using &lt;osp⚡&gt; over https, myaws is direct.</p>
+<p><img alt="aws upload" src="img/output.webp" /></p>
+<h3 id="generate-tpc-h-test-data-using-duckdb">Generate TPC-H test data using duckdb</h3>
+<p><img alt="duckdb" src="img/DuckDB_Logo-horizontal.svg" width="120px" /></p>
+<p>Generate some <a href="https://www.tpc.org/tpch/">TPC-H</a> testdata using <i class="fab fa-github"> </i> <a href="https://github.com/jeroenflvr/dbgen">dbgen</a> with a table on an aws bucket and another table on an ibm cos bucket. </p>
+<p><img alt="dbgen x10 (budget vm)" src="img/dbgen.webp" /></p>
+<p><img alt="spark" src="img/Apache_Spark_logo.svg" width="120px" /></p>
+<p>Create two dataframes from the tpc-h dataset generated earlier, for customer and orders.
+Get the top 10 customers.
+All using a single set of credentials.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyspark.sql</span><span class="w"> </span><span class="kn">import</span> <span class="n">SparkSession</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyspark.sql.functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">col</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="nb">max</span> <span class="k">as</span> <span class="n">_max</span><span class="p">,</span> <span class="n">desc</span>
+
+<span class="n">access_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;AWS_ACCESS_KEY_ID&quot;</span><span class="p">]</span>
+<span class="n">secret_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;AWS_ACCESS_SECRET_KEY&quot;</span><span class="p">]</span>
+
+<span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span> \
+    <span class="o">.</span><span class="n">appName</span><span class="p">(</span><span class="s2">&quot;TPCH&quot;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.access.key&quot;</span><span class="p">,</span> <span class="n">access_key</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.secret.key&quot;</span><span class="p">,</span> <span class="n">secret_key</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.endpoint&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;https://localhost:8443&quot;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.impl&quot;</span><span class="p">,</span> <span class="s2">&quot;org.apache.hadoop.fs.s3a.S3AFileSystem&quot;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.path.style.access&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
+
+<span class="n">spark</span><span class="o">.</span><span class="n">sparkContext</span><span class="o">.</span><span class="n">setLogLevel</span><span class="p">(</span><span class="s2">&quot;ERROR&quot;</span><span class="p">)</span>
+
+<span class="n">customers</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span><span class="s2">&quot;s3a://proxy-bucket01/tpch/sf10/customer/&quot;</span><span class="p">)</span>
+<span class="n">orders</span>    <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span><span class="s2">&quot;s3a://proxy-aws-bucket01/tpch/sf10/orders/&quot;</span><span class="p">)</span>
+
+<span class="c1"># join, aggregate, sort, and limit</span>
+<span class="n">top10_customers</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">customers</span>
+      <span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">orders</span><span class="p">,</span> <span class="n">customers</span><span class="o">.</span><span class="n">c_custkey</span> <span class="o">==</span> <span class="n">orders</span><span class="o">.</span><span class="n">o_custkey</span><span class="p">)</span>
+      <span class="o">.</span><span class="n">groupBy</span><span class="p">(</span>
+          <span class="n">customers</span><span class="o">.</span><span class="n">c_custkey</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;custkey&quot;</span><span class="p">),</span>
+          <span class="n">customers</span><span class="o">.</span><span class="n">c_name</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>
+      <span class="p">)</span>
+      <span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+          <span class="n">count</span><span class="p">(</span><span class="n">orders</span><span class="o">.</span><span class="n">o_orderkey</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;order_count&quot;</span><span class="p">),</span>
+          <span class="n">_max</span><span class="p">(</span><span class="n">orders</span><span class="o">.</span><span class="n">o_orderdate</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;last_order_date&quot;</span><span class="p">)</span>
+      <span class="p">)</span>
+      <span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="n">desc</span><span class="p">(</span><span class="s2">&quot;order_count&quot;</span><span class="p">))</span>
+      <span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">top10_customers</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">truncate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="spark query" src="img/spark.webp" /></p>
+<h3 id="integrated-in-a-fastapi-app">🔜 Integrated in a Fastapi app</h3>
+<p>Using &lt;osp⚡&gt; for download/upload interface within a fastapi python backend (using <a href="https://htmx.org/">&lt;/&gt; htmx</a> for our convenience)</p>
+<p>Then, ie. when a download link is clicked, generate a presigned link in either a dialog for the user or hidden on the page and use javascript to initiate the download.</p>
+<h3 id="presigned-url">Presigned url</h3>
+<p>Generate a presigned url against the &lt;osp⚡&gt; endpoint and download a file, going through the same &lt;osp⚡&gt; gateway.</p>
+<p><img alt="presigned url download" src="img/presign_download.webp" /></p>
+<h3 id="query-from-two-different-vendors-using-presto">Query from two different vendors using Presto</h3>
+<p><img alt="presto logo" src="img/logo-presto-color.svg" width="180px" /> 
+<img alt="hive logo" src="img/Apache_Hive_logo.svg" width="120px" /></p>
+<p>Create TPC-H customer and order tables using spark, on two different buckets, customer on aws and orders on ibm bucket.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyspark.sql</span><span class="w"> </span><span class="kn">import</span> <span class="n">SparkSession</span>
+
+<span class="n">aws_access_key_id</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;AWS_ACCESS_KEY_ID&quot;</span><span class="p">]</span>
+<span class="n">aws_secret_access_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;AWS_SECRET_ACCESS_KEY&quot;</span><span class="p">]</span>
+<span class="n">region</span> <span class="o">=</span> <span class="s2">&quot;eu-west-3&quot;</span>
+
+<span class="n">spark</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">appName</span><span class="p">(</span><span class="s2">&quot;S3AExample&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.access.key&quot;</span><span class="p">,</span> <span class="n">aws_access_key_id</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.secret.key&quot;</span><span class="p">,</span> <span class="n">aws_secret_access_key</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.endpoint&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;http://localhost:6190&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.impl&quot;</span><span class="p">,</span> <span class="s2">&quot;org.apache.hadoop.fs.s3a.S3AFileSystem&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.path.style.access&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;spark.sql.catalogImplementation&quot;</span><span class="p">,</span> <span class="s2">&quot;hive&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.hive.metastore.uris&quot;</span><span class="p">,</span> <span class="s2">&quot;thrift://localhost:9083&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        CREATE EXTERNAL TABLE default.customer (</span>
+<span class="sd">        c_custkey     BIGINT,</span>
+<span class="sd">        c_name        STRING,</span>
+<span class="sd">        c_address     STRING,</span>
+<span class="sd">        c_nationkey   BIGINT,</span>
+<span class="sd">        c_phone       STRING,</span>
+<span class="sd">        c_acctbal     DOUBLE,</span>
+<span class="sd">        c_mktsegment  STRING,</span>
+<span class="sd">        c_comment     STRING</span>
+<span class="sd">        )</span>
+<span class="sd">        STORED AS PARQUET</span>
+<span class="sd">        LOCATION &#39;s3a://proxy-aws-bucket01/tpch/sf10/customer&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<span class="p">)</span>
+
+<span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        CREATE EXTERNAL TABLE IF NOT EXISTS default.orders (</span>
+<span class="sd">        o_orderkey     BIGINT,</span>
+<span class="sd">        o_custkey      BIGINT,</span>
+<span class="sd">        o_orderstatus  STRING,</span>
+<span class="sd">        o_totalprice   DOUBLE,</span>
+<span class="sd">        o_orderdate    DATE,</span>
+<span class="sd">        o_orderpriority STRING,</span>
+<span class="sd">        o_clerk        STRING,</span>
+<span class="sd">        o_shippriority INT,</span>
+<span class="sd">        o_comment      STRING</span>
+<span class="sd">        )</span>
+<span class="sd">        STORED AS PARQUET</span>
+<span class="sd">        LOCATION &#39;s3a://proxy-bucket01/tpch/sf10/orders&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<span class="p">)</span>
+<span class="n">spark</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</code></pre></div>
+<p>Tables
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="n">root</span><span class="o">@</span><span class="n">dbc8ec99fdc5</span><span class="w"> </span><span class="o">/</span><span class="p">]</span><span class="o">#</span><span class="w"> </span><span class="n">presto</span><span class="o">-</span><span class="n">cli</span><span class="w"> </span><span class="c1">--server localhost:8080 --catalog hive --schema default</span>
+<span class="n">presto</span><span class="p">:</span><span class="k">default</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">hive</span><span class="p">.</span><span class="k">default</span><span class="p">.</span><span class="n">customer</span><span class="p">;</span>
+<span class="w">                             </span><span class="k">Create</span><span class="w"> </span><span class="k">Table</span>
+<span class="c1">-----------------------------------------------------------------------</span>
+<span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">hive</span><span class="p">.</span><span class="k">default</span><span class="p">.</span><span class="n">customer</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="ss">&quot;c_custkey&quot;</span><span class="w"> </span><span class="nb">bigint</span><span class="p">,</span>
+<span class="w">    </span><span class="ss">&quot;c_name&quot;</span><span class="w"> </span><span class="nb">varchar</span><span class="p">,</span>
+<span class="w">    </span><span class="ss">&quot;c_address&quot;</span><span class="w"> </span><span class="nb">varchar</span><span class="p">,</span>
+<span class="w">    </span><span class="ss">&quot;c_nationkey&quot;</span><span class="w"> </span><span class="nb">bigint</span><span class="p">,</span>
+<span class="w">    </span><span class="ss">&quot;c_phone&quot;</span><span class="w"> </span><span class="nb">varchar</span><span class="p">,</span>
+<span class="w">    </span><span class="ss">&quot;c_acctbal&quot;</span><span class="w"> </span><span class="n">double</span><span class="p">,</span>
+<span class="w">    </span><span class="ss">&quot;c_mktsegment&quot;</span><span class="w"> </span><span class="nb">varchar</span><span class="p">,</span>
+<span class="w">    </span><span class="ss">&quot;c_comment&quot;</span><span class="w"> </span><span class="nb">varchar</span>
+<span class="w"> </span><span class="p">)</span>
+<span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">external_location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;s3a://proxy-aws-bucket01/tpch/sf10/customer&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;PARQUET&#39;</span>
+<span class="w"> </span><span class="p">)</span>
+<span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="p">)</span>
+
+<span class="n">Query</span><span class="w"> </span><span class="mi">20250504</span><span class="n">_175810_00013_d86su</span><span class="p">,</span><span class="w"> </span><span class="n">FINISHED</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">node</span>
+<span class="n">Splits</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">total</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">done</span><span class="w"> </span><span class="p">(</span><span class="mi">100</span><span class="p">.</span><span class="mi">00</span><span class="o">%</span><span class="p">)</span>
+<span class="p">[</span><span class="n">Latency</span><span class="p">:</span><span class="w"> </span><span class="n">client</span><span class="o">-</span><span class="n">side</span><span class="p">:</span><span class="w"> </span><span class="mi">74</span><span class="n">ms</span><span class="p">,</span><span class="w"> </span><span class="n">server</span><span class="o">-</span><span class="n">side</span><span class="p">:</span><span class="w"> </span><span class="mi">59</span><span class="n">ms</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="n">B</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="o">/</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="n">B</span><span class="o">/</span><span class="n">s</span><span class="p">]</span>
+
+<span class="n">presto</span><span class="p">:</span><span class="k">default</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">hive</span><span class="p">.</span><span class="k">default</span><span class="p">.</span><span class="n">orders</span><span class="p">;</span>
+<span class="w">                          </span><span class="k">Create</span><span class="w"> </span><span class="k">Table</span>
+<span class="c1">-----------------------------------------------------------------</span>
+<span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">hive</span><span class="p">.</span><span class="k">default</span><span class="p">.</span><span class="n">orders</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="ss">&quot;o_orderkey&quot;</span><span class="w"> </span><span class="nb">bigint</span><span class="p">,</span>
+<span class="w">    </span><span class="ss">&quot;o_custkey&quot;</span><span class="w"> </span><span class="nb">bigint</span><span class="p">,</span>
+<span class="w">    </span><span class="ss">&quot;o_orderstatus&quot;</span><span class="w"> </span><span class="nb">varchar</span><span class="p">,</span>
+<span class="w">    </span><span class="ss">&quot;o_totalprice&quot;</span><span class="w"> </span><span class="n">double</span><span class="p">,</span>
+<span class="w">    </span><span class="ss">&quot;o_orderdate&quot;</span><span class="w"> </span><span class="nb">date</span><span class="p">,</span>
+<span class="w">    </span><span class="ss">&quot;o_orderpriority&quot;</span><span class="w"> </span><span class="nb">varchar</span><span class="p">,</span>
+<span class="w">    </span><span class="ss">&quot;o_clerk&quot;</span><span class="w"> </span><span class="nb">varchar</span><span class="p">,</span>
+<span class="w">    </span><span class="ss">&quot;o_shippriority&quot;</span><span class="w"> </span><span class="nb">integer</span><span class="p">,</span>
+<span class="w">    </span><span class="ss">&quot;o_comment&quot;</span><span class="w"> </span><span class="nb">varchar</span>
+<span class="w"> </span><span class="p">)</span>
+<span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">external_location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;s3a://proxy-bucket01/tpch/sf10/orders&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;PARQUET&#39;</span>
+<span class="w"> </span><span class="p">)</span>
+<span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="p">)</span>
+
+<span class="n">Query</span><span class="w"> </span><span class="mi">20250504</span><span class="n">_175812_00014_d86su</span><span class="p">,</span><span class="w"> </span><span class="n">FINISHED</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">node</span>
+<span class="n">Splits</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">total</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">done</span><span class="w"> </span><span class="p">(</span><span class="mi">100</span><span class="p">.</span><span class="mi">00</span><span class="o">%</span><span class="p">)</span>
+<span class="p">[</span><span class="n">Latency</span><span class="p">:</span><span class="w"> </span><span class="n">client</span><span class="o">-</span><span class="n">side</span><span class="p">:</span><span class="w"> </span><span class="mi">74</span><span class="n">ms</span><span class="p">,</span><span class="w"> </span><span class="n">server</span><span class="o">-</span><span class="n">side</span><span class="p">:</span><span class="w"> </span><span class="mi">56</span><span class="n">ms</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="n">B</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="w"> </span><span class="k">rows</span><span class="o">/</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="n">B</span><span class="o">/</span><span class="n">s</span><span class="p">]</span>
+
+<span class="n">presto</span><span class="p">:</span><span class="k">default</span><span class="o">&gt;</span>
+</code></pre></div></p>
+<p>Query tables using presto-cli</p>
+<p><img alt="presto query" src="img/presto_query.webp" /></p>
+<h2 id="contact">Contact</h2>
+<p><a href="mailto:jeroen@flexworks.eu">✉️ Get in touch</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <!-- overrides/partials/footer.html -->
+<footer class="md-footer">
+    <div class="md-footer-meta">
+      <div class="md-footer-meta__inner">
+        <p>© 2025 jeroenflvr  v0.4.3</p>
+      </div>
+    </div>
+  </footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": ".", "features": ["navigation.tabs", "navigation.top", "navigation.expand", "navigation.sections", "navigation.instant", "navigation.tracking", "navigation.search.highlight", "navigation.search.suggest", "navigation.search.share", "navigation.search.suggest", "navigation.search.share", "content.code.copy"], "search": "assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>
