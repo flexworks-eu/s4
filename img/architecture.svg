@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="620" viewBox="0 0 600 620" font-family="Inter, Helvetica, Arial, sans-serif">
+    <!-- background -->
+    <rect width="600" height="620" fill="#ffffff"/>
+  
+    <!-- Clients box -->
+    <rect x="100" y="40" width="400" height="100" rx="14" fill="#dff0ff" stroke="#7ab3ff" stroke-width="2"/>
+    <text x="300" y="85" text-anchor="middle" font-size="24" font-weight="600" fill="#0b2545">Clients</text>
+    <text x="300" y="115" text-anchor="middle" font-size="18" fill="#0b2545">(AWS‑S3 API)</text>
+  
+    <!-- BI/ETL to Gateway arrow label -->
+    <text x="185" y="185" font-size="18" font-weight="500" fill="#0b2545">BI / ETL →</text>
+  
+    <!-- Arrow Clients -> Gateway -->
+    <defs>
+      <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#0b2545" />
+      </marker>
+    </defs>
+    <line x1="300" y1="140" x2="300" y2="220" stroke="#0b2545" stroke-width="4" marker-end="url(#arrow)"/>
+  
+    <!-- Gateway box -->
+    <rect x="100" y="220" width="400" height="160" rx="14" fill="#e7f8e9" stroke="#7cc37d" stroke-width="2"/>
+    <text x="300" y="260" text-anchor="middle" font-size="24" font-weight="600" fill="#14491f">OSP Fast Gateway</text>
+    <text x="300" y="295" text-anchor="middle" font-size="18" fill="#14491f">• In‑process router</text>
+    <text x="300" y="320" text-anchor="middle" font-size="18" fill="#14491f">• Python plugins</text>
+    <text x="300" y="345" text-anchor="middle" font-size="18" fill="#14491f">• Central AuthN/Z 🔒</text>
+  
+    <!-- Arrow Gateway -> Buckets -->
+    <line x1="300" y1="380" x2="300" y2="460" stroke="#0b2545" stroke-width="4" marker-end="url(#arrow)"/>
+  
+    <!-- Buckets box -->
+    <rect x="70" y="460" width="460" height="120" rx="14" fill="#fff1d9" stroke="#f7b84c" stroke-width="2"/>
+    <text x="300" y="505" text-anchor="middle" font-size="24" font-weight="600" fill="#664200">Multi‑Cloud Buckets</text>
+    <text x="300" y="540" text-anchor="middle" font-size="18" fill="#664200">S3 | IBM COS | Azure Blob | GCS …</text>
+  </svg>
