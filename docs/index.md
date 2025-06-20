@@ -47,7 +47,8 @@ Built-in Prometheus metrics and OpenTelemetry traces wrap the exact bytes crossi
 * Low-code integration in typical storage browsers with python backend (see [example #3](index.md/#integrated-in-a-fastapi-app)).
 * Support for presigned urls the same way as regular requests.
 * Credentials support for classic hmac keypair and IBM api_key authentication.
-* <span style="color: white; background-color: red; padding: 2px 5px; border-radius: 3px; font-weight: bold;">NEW!</span> Apply fine-grained permissions on any prefix, make exceptions
+* Apply fine-grained permissions on any prefix, make exceptions
+* <span style="color: white; background-color: red; padding: 2px 5px; border-radius: 3px; font-weight: bold;">NEW!</span> Distributed Cache.  When you are running multiple instances, expensive credentials fetching and authorization roundtrips are called just once.
 
 
 
@@ -534,4 +535,4 @@ Query tables using presto-cli
 
 ## Contact
 
-[✉️ Get in touch](mailto:jeroen@flexworks.eu)
+[✉️ Get in touch](mailto:info@flexworks.eu)

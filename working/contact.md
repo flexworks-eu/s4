@@ -1,3 +1,3 @@
 
 
-[✉️ Find me at jeroen@flexworks.eu](mailto:jeroen@flexworks.eu)
+[✉️ Contact us](mailto:info@flexworks.eu)
