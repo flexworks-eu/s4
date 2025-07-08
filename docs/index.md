@@ -333,7 +333,6 @@ Total Objects: 2
 $
 ```
 
-See more examples [here](index.md#more-examples).
 
 ## More Examples
 
@@ -346,7 +345,7 @@ Profile osps is using &lt;osp⚡&gt; over https, myaws is direct.
 
 ![duckdb](img/DuckDB_Logo-horizontal.svg){ width=120px }
 
-Generate some [TPC-H](https://www.tpc.org/tpch/) testdata using <i class="fab fa-github"> </i> [dbgen](https://github.com/jeroenflvr/dbgen) with a table on an aws bucket and another table on an ibm cos bucket. 
+Generate some [TPC-H](https://www.tpc.org/tpch/) testdata using <i class="fab fa-github"> </i> [dbgen](https://github.com/jeroenflvr/dbgen) with a table on an aws bucket and another table on an ibm cos bucket, using a single endpoint. 
 
 ![dbgen x10 (budget vm)](img/dbgen.webp)
 
@@ -401,13 +400,14 @@ top10_customers.show(truncate=False)
 
 ### 🔜 Integrated in a Fastapi app
 
-Using &lt;osp⚡&gt; for download/upload interface within a fastapi python backend (using [&lt;/&gt; htmx](https://htmx.org/) for our convenience)
+Using &lt;osp⚡&gt; for download/upload interface within a fastapi python backend.
 
-Then, ie. when a download link is clicked, generate a presigned link in either a dialog for the user or hidden on the page and use javascript to initiate the download.
+Then, ie. when a download link is clicked, generate a presigned link in either a dialog for the user or hidden on the page and initiate the download.
 
 
 ### Presigned url
 Generate a presigned url against the &lt;osp⚡&gt; endpoint and download a file, going through the same &lt;osp⚡&gt; gateway.
+Create read-only or write presigned urls.
 
 ![presigned url download](img/presign_download.webp)
 
@@ -415,7 +415,7 @@ Generate a presigned url against the &lt;osp⚡&gt; endpoint and download a file
 ![presto logo](img/logo-presto-color.svg){ width=180px } 
 ![hive logo](img/Apache_Hive_logo.svg){ width=120px }
 
-Create TPC-H customer and order tables using spark, on two different buckets, customer on aws and orders on ibm bucket.
+Create TPC-H customer and order tables using spark, on two different buckets, customer on aws and orders on ibm bucket, using a single endpoint.
 
 ```python
 import os
