@@ -6,8 +6,12 @@ A fast and safe in-process gateway for AWS S3 and compatible services (IBM Cloud
 
 ## What &lt;osp⚡&gt; Does & Why It Matters
 
+### 🛡️ Single Network Endpoint Connection ###
+No risky direct connection between your clients and your object storage backend (even with presigned url).  Manage the single flow between your clients and the proxy.  All data travels through the proxy for both s3/hmac and presigned url connections.
+
 ### 🚀 Instant, Identity-Aware Access to Any Bucket  
 Drop this proxy in front of S3, GCS, IBM COS, Azure Blob, MinIO, or Ceph. It accepts whatever your users already have—OIDC, SAML, JWT, mTLS—then transparently signs and routes the request to the right backend. No hard-coded keys, no presigned URLs, no code changes.
+No direct access from the clients to your object storage backend.
 
 ### 🔒 Single-Point Policy Enforcement  
 Write authorization rules once in **Python** (or call OPA, Redis, SQL—your choice). The proxy evaluates them *in-process* on every `DELETE`/`GET`/`HEAD`/`LIST`/`POST`/`PUT`/`...`, so compliance checks and tenant isolation happen at wire-speed, not in scattered app code.
@@ -28,6 +32,7 @@ Built-in Prometheus metrics and OpenTelemetry traces wrap the exact bytes crossi
 |------------|-----------------|
 | **Credentials sprawl & secret leaks** | Front-end receives tokens; only the proxy holds bucket keys, so nothing sensitive reaches clients, browsers or notebooks. |
 | **Slow, brittle presigned URL workflows** | Users hit one stable URL; the proxy handles signing on the fly. |
+| **Security Risk, multiple direct network flows to object storage backends** | Clients do not connect directly to your object storage backend. |
 | **Duplicate auth logic in every service** | Central policy engine with Python hooks—change rules in one place. |
 | **Vendor lock-in & expensive rewrites** | Abstracts away bucket type; switch providers or split traffic without touching client code. |
 | **Complex proxies that require custom plugins** | Lightweight binary / `pip` package; you extend it with plain Python, not unfamiliar DSLs. |
@@ -54,8 +59,22 @@ Built-in Prometheus metrics and OpenTelemetry traces wrap the exact bytes crossi
 
 ## Architecture Overview
 
+Any given client only requires a single set of credentials.  The backend credentials are abstracted from the client and managed by your business logic and company policies, using Python instead of complicated DSL (Domain Specific Language).
+
 ![S4 Cloud Object Storage Reverse Proxy](img/architecture.png)
 
+## Data Flow
+
+There is no direct connection between your clients and object storage backends.
+
+### traditional setup without &lt;osp⚡&gt;
+
+![Traditional setup with presigned urlsy](img/traditional_presigned_url.png)
+
+### secure setup using &lt;osp⚡&gt;
+The credentials are only fetched once at the initial connection.  Set a meaningful ttl (time-to-live) for each backend.  When the ttl expires, the process repeats. 
+
+![Secure Simple Setup using &lt;osp⚡&gt;](img/osp_presigned_url.png)
 
 ## Performance
 Performance is pretty good.  Even when using the python callback functions, since they're only called once and then cached for the remainder of the requests or until ttl expiration.
