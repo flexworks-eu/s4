@@ -6,12 +6,12 @@ A fast and safe in-process gateway for AWS S3 and compatible services (IBM Cloud
 
 ## What &lt;osp⚡&gt; Does & Why It Matters
 
-### 🛡️ Single Network Endpoint Connection ###
-No risky direct connection between your clients and your object storage backend (even with presigned url).  Manage the single flow between your clients and the proxy.  All data travels through the proxy for both s3/hmac and presigned url connections.
 
 ### 🚀 Instant, Identity-Aware Access to Any Bucket  
 Drop this proxy in front of S3, GCS, IBM COS, Azure Blob, MinIO, or Ceph. It accepts whatever your users already have—OIDC, SAML, JWT, mTLS—then transparently signs and routes the request to the right backend. No hard-coded keys, no presigned URLs, no code changes.
-No direct access from the clients to your object storage backend.
+
+### 🛡️ Single Network Endpoint Connection ###
+No risky direct connection between your clients and your object storage backend (even with presigned url).  Manage the single flow between your clients and the proxy.  All data travels through the proxy for both s3/hmac and presigned url connections.
 
 ### 🔒 Single-Point Policy Enforcement  
 Write authorization rules once in **Python** (or call OPA, Redis, SQL—your choice). The proxy evaluates them *in-process* on every `DELETE`/`GET`/`HEAD`/`LIST`/`POST`/`PUT`/`...`, so compliance checks and tenant isolation happen at wire-speed, not in scattered app code.
