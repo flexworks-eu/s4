@@ -13,6 +13,10 @@ Drop this proxy in front of S3, GCS, IBM COS, Azure Blob, MinIO, or Ceph. It acc
 ### 🛡️ Single Network Endpoint Connection ###
 No risky direct connection between your clients and your object storage backend (even with presigned url).  Manage the single flow between your clients and the proxy.  All data travels through the proxy for both s3/hmac and presigned url connections.
 
+### <span style="color: white; background-color: red; padding: 2px 5px; border-radius: 3px; font-weight: bold;">NEW!</span> Secure Access with Limited-Use Links
+For secure access to files stored on S3 and IBM Cloud Object Storage, &lt;osp⚡&gt; can generate pre-signed URLs.
+These links are time-limited and may be restricted to a limited number of uses to ensure security and prevent misuse.
+
 ### 🔒 Single-Point Policy Enforcement  
 Write authorization rules once in **Python** (or call OPA, Redis, SQL—your choice). The proxy evaluates them *in-process* on every `DELETE`/`GET`/`HEAD`/`LIST`/`POST`/`PUT`/`...`, so compliance checks and tenant isolation happen at wire-speed, not in scattered app code.
 
@@ -23,6 +27,7 @@ Because auth and streaming live in the **same memory space**, there’s no secon
 
 ### 📊 Observability Where It Counts  
 Built-in Prometheus metrics and OpenTelemetry traces wrap the exact bytes crossing the wire. You’ll see authentication failures, object sizes, and transfer times without bolting Lua or WASM onto a generic proxy.
+
 
 ---
 
