@@ -230,11 +230,11 @@ import json
 import os
 import random
 import strtobool
-import object_storage_proxy as osp
+import osp
 
 from dotenv import load_dotenv
 
-from object_storage_proxy import start_server, ProxyServerConfig
+from osp import start_server, ProxyServerConfig
 
 
 def do_api_creds(token: str, bucket: str) -> str:
@@ -435,11 +435,11 @@ Create read-only or write presigned urls.
 
 ![presigned url download](img/presign_download.webp)
 
-### Query from two different vendors using Presto
+### Query from two different service providers using Presto, single endpoint
 ![presto logo](img/logo-presto-color.svg){ width=180px } 
 ![hive logo](img/Apache_Hive_logo.svg){ width=120px }
 
-Create TPC-H customer and order tables using spark, on two different buckets, customer on aws and orders on ibm bucket, using a single endpoint.
+Create TPC-H customer and order tables using spark, on two different buckets on different service providers: customer on aws and orders on ibm bucket, using a single endpoint.
 
 ```python
 import os
