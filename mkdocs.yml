@@ -10,7 +10,6 @@ nav:
     - Features: home/features.md
     - Architecture: home/architecture.md
     - Performance: home/performance.md
-    - Documentation: documentation.md
   - Getting Started:
       - Installation: getting_started/installation.md
       - Configuration: getting_started/configuration.md
