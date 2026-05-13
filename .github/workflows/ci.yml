@@ -48,5 +48,5 @@ jobs:
       - name: Copy cargo doc into docs/api
         run: |
           mkdir -p docs/api
-          cp -r object-storage-proxy/target/doc/object_storage_proxy/* docs/api/
+          cp -r object-storage-proxy/target/doc/* docs/api/
       - run: mkdocs gh-deploy --force

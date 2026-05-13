@@ -16,7 +16,7 @@ nav:
   - Examples:
       - Examples: examples/examples.md
   - Contact: contact/contact.md
-  - API Reference: api/index.html
+  - API Reference: api/object_storage_proxy/index.html
 
 theme:
   name: material
