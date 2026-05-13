@@ -1,3 +1,5 @@
 .venv/
 .DS_Store
 *.mov
+docs/api/
+object-storage-proxy/

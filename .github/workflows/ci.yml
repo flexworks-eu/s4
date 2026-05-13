@@ -25,5 +25,28 @@ jobs:
           path: .cache 
           restore-keys: |
             mkdocs-material-
-      - run: pip install mkdocs-material 
+      - run: pip install mkdocs-material
+      - name: Checkout source project
+        uses: actions/checkout@v4
+        with:
+          repository: opensourceworks-org/object-storage-proxy
+          path: object-storage-proxy
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+      - name: Cache cargo registry
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            object-storage-proxy/target
+          key: cargo-doc-${{ hashFiles('object-storage-proxy/Cargo.lock') }}
+          restore-keys: cargo-doc-
+      - name: Build cargo doc
+        working-directory: object-storage-proxy
+        run: cargo doc --no-deps --document-private-items
+      - name: Copy cargo doc into docs/api
+        run: |
+          mkdir -p docs/api
+          cp -r object-storage-proxy/target/doc/object_storage_proxy/* docs/api/
       - run: mkdocs gh-deploy --force
