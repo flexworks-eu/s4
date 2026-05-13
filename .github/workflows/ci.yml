@@ -49,4 +49,10 @@ jobs:
         run: |
           mkdir -p docs/api
           cp -r object-storage-proxy/target/doc/* docs/api/
+      - name: Extract source version
+        run: |
+          VERSION=$(grep '^version' object-storage-proxy/Cargo.toml | head -1 | sed 's/.*= *"\(.*\)"/\1/')
+          echo "OSP_VERSION=$VERSION" >> $GITHUB_ENV
       - run: mkdocs gh-deploy --force
+        env:
+          OSP_VERSION: ${{ env.OSP_VERSION }}
