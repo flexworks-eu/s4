@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["get_bearer","get_credential_for_bucket"],"struct":["IamResponse","SecretValue","SecretsCache"]};

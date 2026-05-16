@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["is_key_char","is_val_char","miss","parse_credential_scope","parse_presigned_params","parse_token_from_header","query_pairs"],"struct":["PresignedParams"]};
